@@ -140,6 +140,12 @@ section,.hero{position:relative}
 .online p{margin:0;color:rgba(255,255,255,.82);font-size:15.5px;line-height:1.55}
 .online .oh{display:inline-block;margin-top:10px;font-weight:600;color:#f3e3b5;font-size:15px}
 .online .btn{background:var(--gold);border-color:var(--gold);color:#fff;flex:none}
+
+.btn-online{background:var(--gold);border-color:var(--gold);color:#fff}
+.btn-online svg{width:20px;height:20px;stroke:#fff;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;margin-right:8px}
+.online-chip{display:inline-flex;align-items:center;gap:10px;margin-top:20px;padding:9px 16px;border-radius:999px;background:var(--green-100);color:var(--green-900);font-size:14.5px;font-weight:500;border:1px solid rgba(30,107,47,.18)}
+.online-chip b{font-weight:700}
+.online-chip i{width:9px;height:9px;border-radius:50%;background:var(--green-500);box-shadow:0 0 0 4px rgba(90,168,58,.22)}
 /* nav */
 header{position:sticky;top:0;z-index:20;background:rgba(250,246,236,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
 .nav{display:flex;align-items:center;justify-content:space-between;height:80px}
@@ -322,9 +328,11 @@ footer a:hover{color:#fff}
       <h1>Natural healing, guided by <em>classical Unani</em> medicine.</h1>
       <p>A and Z Healthcare treats the whole person, not just the symptom. Personal consultations, herbal Unani medicines, hijama and long-term care, led by a university-trained Unani physician.</p>
       <div class="hero-cta">
-        <a class="btn btn-primary" href="#book">Book a consultation</a>
+        <a class="btn btn-primary" href="#book">Book a visit</a>
+        <a class="btn btn-online heroOnline" href="#book"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="13" height="12" rx="2.5"/><path d="M16 10.5l5-3v9l-5-3"/></svg>Consult online</a>
         <a class="btn btn-ghost" href="#services">Explore treatments</a>
       </div>
+      <div class="online-chip"><i></i><span><b>Online consultation</b> available 10 AM – 10 PM</span></div>
       <div class="trust">
         <span><i></i>5.0 ★ on Google (5 reviews)</span>
       </div>
@@ -534,7 +542,7 @@ footer a:hover{color:#fff}
 /* Clinic WhatsApp number, international format, digits only */
 var WHATSAPP_NUMBER = "917208433163";
 
-document.getElementById('onlineBtn').addEventListener('click',function(){document.getElementById('svc').value='Online consultation'});
+document.querySelectorAll('#onlineBtn,.heroOnline').forEach(function(b){b.addEventListener('click',function(){document.getElementById('svc').value='Online consultation'})});
 document.getElementById('yr').textContent = new Date().getFullYear();
 document.querySelectorAll('#menu a').forEach(function(a){a.addEventListener('click',function(){document.getElementById('menu').classList.remove('open')})});
 
