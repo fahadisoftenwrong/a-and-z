@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A and Z Healthcare | Unani Clinic, Mumbai</title>
+<meta name="description" content="A and Z Healthcare is a Unani clinic in Mumbai led by Dr. Hafsa Patel, Assistant Professor and Master's in Unani Medicine. Natural healing, hijama, herbal Unani medicine and chronic care.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --green-900:#124022; --green-700:#1e6b2f; --green-500:#5aa83a; --green-100:#e3eee6;
+  --cream:#faf6ec; --cream-2:#f2ecda; --gold:#b98a3e; --ink:#1d2a24; --muted:#5b6a62; --line:#dcd6c2;
+  --radius:18px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Inter,system-ui,sans-serif;background:var(--cream);color:var(--ink);line-height:1.65;font-size:17px}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;font-weight:600;line-height:1.15;color:var(--green-900)}
+a{color:inherit}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+section{padding:84px 0}
+.eyebrow{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:14px}
+h2{font-size:clamp(28px,4vw,40px);margin-bottom:16px}
+.lead{color:var(--muted);max-width:640px;font-size:18px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 26px;border-radius:999px;font-weight:600;text-decoration:none;font-size:16px;border:2px solid var(--green-700);transition:.2s;cursor:pointer;font-family:inherit}
+.btn-primary{background:var(--green-700);color:#fff}
+.btn-primary:hover{background:var(--green-900);border-color:var(--green-900)}
+.btn-ghost{background:transparent;color:var(--green-700)}
+.btn-ghost:hover{background:var(--green-100)}
+
+
+:root{--geo-g:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='90' viewBox='0 0 90 90' fill='none' stroke='%231e6b2f' stroke-opacity='.14' stroke-width='1.2'%3E%3Crect x='19' y='19' width='52' height='52'/%3E%3Crect x='19' y='19' width='52' height='52' transform='rotate%2845 45 45%29'/%3E%3Ccircle cx='45' cy='45' r='11'/%3E%3Ccircle cx='45' cy='45' r='3'/%3E%3Cpath d='M45 0v8M45 82v8M0 45h8M82 45h8M19 19L0 0M71 19L90 0M19 71L0 90M71 71L90 90'/%3E%3C/svg%3E");--geo-gold:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='90' viewBox='0 0 90 90' fill='none' stroke='%23b98a3e' stroke-opacity='.30' stroke-width='1.2'%3E%3Crect x='19' y='19' width='52' height='52'/%3E%3Crect x='19' y='19' width='52' height='52' transform='rotate%2845 45 45%29'/%3E%3Ccircle cx='45' cy='45' r='11'/%3E%3Ccircle cx='45' cy='45' r='3'/%3E%3Cpath d='M45 0v8M45 82v8M0 45h8M82 45h8M19 19L0 0M71 19L90 0M19 71L0 90M71 71L90 90'/%3E%3C/svg%3E");--geo-gold-s:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 90 90' fill='none' stroke='%23b98a3e' stroke-opacity='.55' stroke-width='2.4'%3E%3Crect x='19' y='19' width='52' height='52'/%3E%3Crect x='19' y='19' width='52' height='52' transform='rotate%2845 45 45%29'/%3E%3Ccircle cx='45' cy='45' r='11'/%3E%3Ccircle cx='45' cy='45' r='3'/%3E%3Cpath d='M45 0v8M45 82v8M0 45h8M82 45h8M19 19L0 0M71 19L90 0M19 71L0 90M71 71L90 90'/%3E%3C/svg%3E");--star:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14' fill='%23b98a3e'%3E%3Crect x='2' y='2' width='10' height='10'/%3E%3Crect x='2' y='2' width='10' height='10' transform='rotate%2845 7 7%29'/%3E%3C/svg%3E")}
+section,.hero{position:relative}
+.hero::before,.conds::before,.about::before,.book::before{content:"";position:absolute;inset:0;background-image:var(--geo-g);background-size:90px;pointer-events:none}
+.hero::before{-webkit-mask-image:linear-gradient(to bottom,#000 20%,transparent 95%);mask-image:linear-gradient(to bottom,#000 20%,transparent 95%)}
+.about::before,.book::before{opacity:.55}
+.conds{overflow:hidden}
+.conds::before{background-image:var(--geo-gold);opacity:.45}
+.hero>.wrap,.conds>.wrap,.about>.wrap,.book>.wrap{position:relative;z-index:1}
+.eyebrow::before{content:"";display:inline-block;width:14px;height:14px;background:var(--star) center/contain no-repeat;margin-right:10px;vertical-align:-1px}
+.hero-art{border:3px solid var(--gold);outline:2px solid var(--gold);outline-offset:6px}
+.band{height:44px;background-color:var(--green-900);background-image:var(--geo-gold-s);background-size:40px;background-position:center;border-top:3px solid var(--gold);border-bottom:3px solid var(--gold)}
+.card,.rev,.post-card,.pillar{position:relative}
+.card::after,.rev::after{content:"";position:absolute;top:14px;right:14px;width:16px;height:16px;background:var(--star) center/contain no-repeat;opacity:.55}
+
+
+.arch-frame{--geo-frame:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='90' viewBox='0 0 90 90' fill='none' stroke='%23d6a653' stroke-opacity='.95' stroke-width='3.2'%3E%3Crect x='19' y='19' width='52' height='52'/%3E%3Crect x='19' y='19' width='52' height='52' transform='rotate%2845 45 45%29'/%3E%3Ccircle cx='45' cy='45' r='11'/%3E%3Cpath d='M45 0v8M45 82v8M0 45h8M82 45h8M19 19L0 0M71 19L90 0M19 71L0 90M71 71L90 90'/%3E%3C/svg%3E");justify-self:center;width:100%;max-width:436px;padding:18px;border-radius:218px 218px 30px 30px;background-color:var(--green-900);background-image:var(--geo-frame);background-size:36px;background-position:center;border:3px solid var(--gold);box-shadow:0 0 0 3px var(--cream),0 0 0 5px var(--gold),0 20px 40px rgba(23,58,43,.18)}
+.arch-frame .hero-art{border:2px solid var(--gold);outline:none;max-width:none;margin:0;box-shadow:0 0 0 5px var(--green-900)}
+
+/* nav */
+header{position:sticky;top:0;z-index:20;background:rgba(250,246,236,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:80px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.brand b{font-family:Fraunces,serif;font-size:21px;color:var(--green-900)}
+.brand small{display:block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:-2px}
+nav ul{display:flex;gap:28px;list-style:none;align-items:center}
+nav a{text-decoration:none;font-size:15px;font-weight:500;color:var(--ink)}
+nav a:hover{color:var(--green-500)}
+nav .btn{padding:10px 20px;font-size:15px;color:#fff}
+.menu-btn{display:none;background:none;border:0;font-size:28px;color:var(--green-900);cursor:pointer}
+
+/* hero */
+.hero{padding:72px 0 88px;background:radial-gradient(900px 500px at 85% 0%,var(--green-100),transparent 70%)}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:center}
+.hero h1{font-size:clamp(38px,5.4vw,60px);margin-bottom:20px}
+.hero h1 em{font-style:italic;color:var(--green-500)}
+.hero p{font-size:19px;color:var(--muted);max-width:540px;margin-bottom:32px}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap}
+.hero-art{background:var(--green-700);border-radius:182px 182px 18px 18px;padding:120px 32px 32px;width:100%;max-width:400px;justify-self:center;color:#fff;position:relative;overflow:hidden;min-height:400px;display:flex;flex-direction:column;justify-content:flex-end}
+.hero-art svg.bg{position:absolute;left:50%;top:34px;transform:translateX(-50%);opacity:.25;width:150px}
+.hero-art blockquote{font-family:Fraunces,serif;font-size:19px;line-height:1.4;position:relative}
+.hero-art cite{display:block;margin-top:16px;font-style:normal;font-size:14px;opacity:.8}
+.arabic{font-family:Amiri,serif;font-size:27px;line-height:1.6;margin-bottom:14px;position:relative}
+.trust{display:flex;gap:28px;flex-wrap:wrap;margin-top:40px;font-size:14px;color:var(--muted)}
+.trust span{display:flex;align-items:center;gap:8px}
+.trust i{width:8px;height:8px;border-radius:50%;background:var(--gold);display:inline-block}
+
+/* about */
+.about{background:var(--cream-2)}
+.about-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:56px;align-items:center}
+.portrait{aspect-ratio:4/5;border-radius:var(--radius);background:linear-gradient(160deg,var(--green-500),var(--green-900));display:flex;align-items:center;justify-content:center;color:#fff;text-align:center;padding:24px;font-size:14px;opacity:.95}
+.portrait div{border:2px dashed rgba(255,255,255,.5);border-radius:14px;padding:28px 18px}
+.portrait-wrap{max-width:420px;margin:0 auto;filter:drop-shadow(0 18px 30px rgba(23,58,43,.22))}
+.portrait-wrap img{width:100%;height:auto;display:block}
+.creds{display:flex;gap:10px;flex-wrap:wrap;margin:22px 0}
+.creds span{background:#fff;border:1px solid var(--line);padding:8px 16px;border-radius:999px;font-size:14px;font-weight:500;color:var(--green-700)}
+
+/* cards */
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:44px}
+.card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:32px;transition:.25s}
+.card:hover{transform:translateY(-4px);box-shadow:0 14px 34px rgba(23,58,43,.1)}
+.ico{width:52px;height:52px;border-radius:14px;background:var(--green-100);display:grid;place-items:center;margin-bottom:20px}
+.ico svg{width:28px;height:28px;stroke:var(--green-700);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.card h3{font-size:22px;margin-bottom:10px}
+.card p{color:var(--muted);font-size:16px}
+
+/* conditions */
+.conds{background:var(--green-900);color:#fff}
+.conds h2{color:#fff}.conds .lead{color:#c5d6cb}
+.pills{display:flex;flex-wrap:wrap;gap:12px;margin-top:36px}
+.pills span{border:1px solid rgba(255,255,255,.28);padding:11px 22px;border-radius:999px;font-size:16px}
+.note{margin-top:28px;font-size:14px;color:#b4c8ba;max-width:680px}
+
+/* approach */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:44px;counter-reset:s}
+.step{position:relative;padding-top:56px}
+.step:before{counter-increment:s;content:"0" counter(s);position:absolute;top:0;left:0;font-family:Fraunces,serif;font-size:42px;color:var(--gold)}
+.step h3{font-size:21px;margin-bottom:8px}
+.step p{color:var(--muted);font-size:16px}
+
+/* book */
+.book{background:var(--cream-2)}
+.book-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+form{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:32px}
+label{display:block;font-size:14px;font-weight:600;margin:0 0 6px;color:var(--green-900)}
+input,select,textarea{width:100%;padding:13px 14px;border:1px solid var(--line);border-radius:12px;font:inherit;font-size:16px;background:var(--cream);margin-bottom:18px;color:var(--ink)}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--green-500);border-color:transparent}
+textarea{min-height:90px;resize:vertical}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.contact-list{list-style:none;margin-top:28px;display:grid;gap:18px}
+.contact-list li{display:flex;gap:14px;align-items:flex-start}
+.contact-list b{display:block;color:var(--green-900)}
+.contact-list span{color:var(--muted)}
+.ph{background:#fff3cf;padding:1px 6px;border-radius:5px;font-size:.92em}
+.hint{font-size:13px;color:var(--muted);margin-top:12px}
+
+/* faq */
+.faq{max-width:760px;margin-top:36px}
+details{border-bottom:1px solid var(--line);padding:20px 0}
+summary{cursor:pointer;font-weight:600;font-size:18px;color:var(--green-900);list-style:none;display:flex;justify-content:space-between;gap:16px}
+summary::-webkit-details-marker{display:none}
+summary:after{content:"+";font-size:24px;color:var(--gold);line-height:1}
+details[open] summary:after{content:"–"}
+details p{margin-top:12px;color:var(--muted)}
+
+footer{background:var(--green-900);color:#c5d6cb;padding:56px 0 100px;font-size:15px}
+.foot{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px}
+footer h4{color:#fff;font-family:Fraunces,serif;font-size:18px;margin-bottom:12px}
+footer a{text-decoration:none;display:block;margin-bottom:8px}
+footer a:hover{color:#fff}
+.disc{margin-top:36px;padding-top:24px;border-top:1px solid rgba(255,255,255,.15);font-size:13px;color:#9fb5a6}
+
+.wa{position:fixed;right:20px;bottom:20px;z-index:30;background:#25a05a;color:#fff;text-decoration:none;padding:14px 22px;border-radius:999px;font-weight:600;box-shadow:0 8px 24px rgba(0,0,0,.25);display:flex;gap:8px;align-items:center;font-size:15px}
+
+.unani-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+.pillars{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.pillar{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px}
+.pillar b{display:block;font-family:Fraunces,serif;color:var(--green-900);font-size:17px;margin-bottom:4px}
+.pillar span{color:var(--muted);font-size:14.5px;line-height:1.5;display:block}
+.humors{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 6px}
+.humors span{background:var(--green-100);color:var(--green-700);padding:6px 14px;border-radius:999px;font-size:14px;font-weight:500}
+.blog{background:var(--cream-2)}
+.posts{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:40px}
+.post-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:28px;text-decoration:none;display:block;transition:.25s}
+.post-card:hover{transform:translateY(-4px);box-shadow:0 14px 34px rgba(23,58,43,.1)}
+.tag{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);font-weight:600}
+.post-card h3{font-size:21px;margin:10px 0}
+.post-card p{color:var(--muted);font-size:15.5px}
+.more{display:inline-block;margin-top:14px;color:var(--green-700);font-weight:600;font-size:15px}
+.article{max-width:720px;margin:0 auto;padding:64px 24px 90px}
+.article h1{font-size:clamp(30px,4.5vw,44px);margin:12px 0 10px}
+.article .meta{color:var(--muted);font-size:14px;margin-bottom:34px}
+.article p{margin-bottom:20px;font-size:18px}
+.article .back{display:inline-block;margin-bottom:28px;color:var(--green-700);font-weight:600;text-decoration:none}
+.rev-head{display:flex;align-items:center;gap:20px;flex-wrap:wrap;margin-top:8px}
+.score{font-family:Fraunces,serif;font-size:56px;color:var(--green-900);line-height:1}
+.stars{color:var(--gold);letter-spacing:3px;font-size:20px}
+.rev-meta{color:var(--muted);font-size:14.5px}
+.revs{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-top:40px}
+.rev{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:28px}
+.rev p{margin:12px 0 18px;font-size:16.5px;color:var(--ink)}
+.rev b{color:var(--green-900)}
+.rev small{display:block;color:var(--muted);font-size:13px}
+.hours{width:100%;border-collapse:collapse;margin-top:4px;font-size:15px}
+.hours td{padding:3px 0;color:var(--muted)}
+.hours td:last-child{text-align:right}
+@media(max-width:860px){
+  .revs{grid-template-columns:1fr}
+  .unani-grid,.posts{grid-template-columns:1fr}
+  .pillars{grid-template-columns:1fr}
+  section{padding:60px 0}
+  .hero-grid,.about-grid,.book-grid,.cards,.steps,.foot{grid-template-columns:1fr}
+  .hero-art{min-height:380px;margin:0 auto}
+  .portrait{max-width:320px}
+  nav ul{display:none;position:absolute;top:80px;left:0;right:0;background:var(--cream);flex-direction:column;padding:20px 24px;gap:18px;border-bottom:1px solid var(--line)}
+  nav ul.open{display:flex}
+  .menu-btn{display:block}
+  .row{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#top" aria-label="A and Z Healthcare home">
+      <img src="logo.png" alt="A&amp;Z Healthcare Centre logo" height="56" style="height:56px;width:auto">
+      <span><b>A&amp;Z Healthcare</b><small>Unani Clinic</small></span>
+    </a>
+    <button class="menu-btn" aria-label="Menu" onclick="document.getElementById('menu').classList.toggle('open')">☰</button>
+    <nav>
+      <ul id="menu">
+        <li><a href="#unani">Unani</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Treatments</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="#blog">Blog</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a class="btn btn-primary" href="#book">Book a visit</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+<!-- HOME -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">Unani medicine · Jogeshwari, Mumbai</div>
+      <h1>Natural healing, guided by <em>classical Unani</em> medicine.</h1>
+      <p>A and Z Healthcare treats the whole person, not just the symptom. Personal consultations, herbal Unani medicines, hijama and long-term care, led by a university-trained Unani physician.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#book">Book a consultation</a>
+        <a class="btn btn-ghost" href="#services">Explore treatments</a>
+      </div>
+      <div class="trust">
+        <span><i></i>Led by Dr. Hafsa Patel</span>
+        <span><i></i>Master's in Unani Medicine</span>
+        <span><i></i>Assistant Professor</span>
+        <span><i></i>5.0 ★ on Google (5 reviews)</span>
+      </div>
+    </div>
+    <div class="arch-frame"><div class="hero-art" aria-hidden="true">
+      <svg class="bg" viewBox="0 0 200 200" fill="none" stroke="#fff" stroke-width="1.2"><rect x="40" y="40" width="120" height="120"/><rect x="40" y="40" width="120" height="120" transform="rotate(45 100 100)"/><rect x="62" y="62" width="76" height="76"/><rect x="62" y="62" width="76" height="76" transform="rotate(45 100 100)"/><circle cx="100" cy="100" r="58"/><circle cx="100" cy="100" r="22"/><circle cx="100" cy="100" r="6"/></svg>
+      <div class="arabic" lang="ar" dir="rtl">مَا أَنْزَلَ اللَّهُ دَاءً إِلَّا أَنْزَلَ لَهُ شِفَاءً</div>
+      <blockquote>“Allah has not sent down any disease except that He has also sent down its cure.”</blockquote>
+      <cite>Hadith · Sahih al-Bukhari 5678</cite>
+    </div></div>
+  </div>
+</section>
+
+<div class="band" aria-hidden="true"></div>
+<section id="unani">
+  <div class="wrap unani-grid">
+    <div>
+      <div class="eyebrow">What is Unani?</div>
+      <h2>An ancient system of medicine, still practised today</h2>
+      <p class="lead">Unani (Unani-Tibb) is a traditional system of medicine that grew from Greek foundations and was developed over centuries by Arab and Persian physicians such as Ibn Sina (Avicenna) and Al-Razi. It is formally recognised and practised in India under the AYUSH framework.</p>
+      <p style="color:var(--muted);margin-top:16px">Unani sees health as balance. Each person has a unique temperament (<i>mizaj</i>), shaped by the balance of four humors. When that balance is disturbed by diet, environment, stress or habit, illness can follow. Treatment aims to find the cause and restore the balance, supporting the body's own healing.</p>
+      <div class="humors"><span>Dam (blood)</span><span>Balgham (phlegm)</span><span>Safra (yellow bile)</span><span>Sauda (black bile)</span></div>
+    </div>
+    <div>
+      <h3 style="font-size:22px;margin-bottom:16px">Four modes of Unani treatment</h3>
+      <div class="pillars">
+        <div class="pillar"><b>Ilaj bil Ghiza</b><span>Dietotherapy: the right food, at the right time, for your temperament.</span></div>
+        <div class="pillar"><b>Ilaj bil Dawa</b><span>Pharmacotherapy: natural, mostly herbal, medicines.</span></div>
+        <div class="pillar"><b>Ilaj bil Tadbeer</b><span>Regimenal therapies such as hijama, massage and leech therapy.</span></div>
+        <div class="pillar"><b>Jarahat</b><span>The surgical branch of classical Unani practice.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="wrap about-grid">
+    <div class="portrait-wrap"><img src="hafsa.png" alt="Dr. Hafsa Patel, Unani physician at A and Z Healthcare" loading="lazy"></div>
+    <div>
+      <div class="eyebrow">Meet your physician</div>
+      <h2>Dr. Hafsa Patel</h2>
+      <p class="lead">Dr. Hafsa Patel is an Assistant Professor of Unani medicine and holds a Master's in Unani Medicine. Her goal is to bring ethics together with academic Unani clinical practice, so that patients receive care that is both scientifically grounded and honest, respectful and compassionate.</p>
+      <div class="creds"><span>Master's in Unani Medicine</span><span>Assistant Professor</span><span>Ethics-led practice</span></div>
+      <p style="color:var(--muted)">Every consultation starts with listening: your history, lifestyle, digestion, sleep and temperament. The treatment plan is then built around you. It is not a one-size-fits-all prescription.</p>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="wrap">
+    <div class="eyebrow">Treatments &amp; facilities</div>
+    <h2>What we offer</h2>
+    <p class="lead">Natural healing and personalised care, blending traditional wisdom with modern healthcare needs.</p>
+    <p class="lead" style="margin-top:12px;color:var(--green-700);font-weight:500">Proper privacy arrangements are available for women patients.</p>
+    <div class="cards">
+      <div class="card"><div class="ico"><svg viewBox="0 0 24 24"><path d="M4 12h4l2-5 4 10 2-5h4"/></svg></div><h3>General OPD</h3><p>Routine check-ups and everyday medical care for you and your family.</p></div>
+      <div class="card"><div class="ico"><svg viewBox="0 0 24 24"><path d="M12 21c-5-2-8-6-7-13 5 0 9 2 11 7 1 3 0 5-4 6z"/><path d="M12 21c0-4 1-7 4-9"/></svg></div><h3>Unani consultation</h3><p>A personalised treatment plan based on Unani principles, including herbal Unani medicines and diet guidance.</p></div>
+      <div class="card"><div class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/><path d="M12 4v2M12 18v2M4 12h2M18 12h2"/></svg></div><h3>Hijama therapy (cupping)</h3><p>Available for male and female patients, with proper privacy arrangements for women. A male doctor is available on prior appointment.</p></div>
+      <div class="card"><div class="ico"><svg viewBox="0 0 24 24"><path d="M4 15c3-5 5 3 8-2s5 2 8-3"/><path d="M4 20c3-5 5 3 8-2s5 2 8-3"/></svg></div><h3>Massage therapy</h3><p>Therapeutic relaxation and pain management.</p></div>
+      <div class="card"><div class="ico"><svg viewBox="0 0 24 24"><path d="M12 3c3 4 5 6.5 5 9.5a5 5 0 01-10 0C7 9.5 9 7 12 3z"/></svg></div><h3>Leech therapy</h3><p>A traditional therapy for natural detoxification.</p></div>
+      <div class="card"><div class="ico"><svg viewBox="0 0 24 24"><path d="M12 3v18M3 12h18"/><circle cx="12" cy="12" r="9"/></svg></div><h3>Chronic condition care</h3><p>Long-term plans combining medicines, diet and lifestyle guidance with regular follow-ups.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="conds" id="conditions">
+  <div class="wrap">
+    <div class="eyebrow">Conditions we support</div>
+    <h2>Care for ongoing health concerns</h2>
+    <p class="lead">Many patients come to us when long-term issues need a gentler, root-focused approach.</p>
+    <div class="pills">
+      <span>Skin concerns</span><span>Joint &amp; muscle pain</span><span>Digestive health</span><span>Women's health</span><span>Allergies &amp; respiratory</span><span>Lifestyle &amp; stress</span><span>Sleep &amp; energy</span>
+    </div>
+    <p class="note">Unani care is complementary. It does not replace emergency or surgical treatment. If you are on regular medication, please bring your reports and prescriptions to the consultation.</p>
+  </div>
+</section>
+
+<section id="approach">
+  <div class="wrap">
+    <div class="eyebrow">How it works</div>
+    <h2>Simple, personal, unhurried</h2>
+    <div class="steps">
+      <div class="step"><h3>Consultation</h3><p>A detailed conversation about your symptoms, history, digestion, sleep and lifestyle, so that we understand you as a whole.</p></div>
+      <div class="step"><h3>Personal plan</h3><p>Medicines, therapies and diet advice matched to your temperament and condition, explained clearly.</p></div>
+      <div class="step"><h3>Follow-up</h3><p>Regular reviews to track progress and adjust the plan, so care continues until you are well.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="reviews">
+  <div class="wrap">
+    <div class="eyebrow">Patient reviews</div>
+    <h2>What our patients say</h2>
+    <div class="rev-head"><span class="score">5.0</span><div><div class="stars" aria-hidden="true">★★★★★</div><div class="rev-meta">5 Google reviews · <a href="https://share.google/U0tK7B0oqAcbB5ZOB" target="_blank" rel="noopener" style="color:var(--green-700);font-weight:600">See all on Google</a></div></div></div>
+    <div class="revs">
+      <div class="rev"><div class="stars" aria-label="5 out of 5 stars">★★★★★</div><p>I was struggling with acne, pimples, and redness on my face for a long time. I visited A&amp;Z Healthcare Centre, where the doctor examined my skin and prescribed the required treatment. After following the treatment regularly, I noticed a significant improvement in my skin. I'm very happy with the results and highly satisfied with the care and treatment provided at A&amp;Z Healthcare Centre. Highly recommended!</p><b>Mubashshira Patel</b><small>Google review</small></div>
+      <div class="rev"><div class="stars" aria-label="5 out of 5 stars">★★★★★</div><p>I was suffering from stomach pain and vomiting for 2–3 weeks. Even after taking allopathic medicines for 2 weeks, there was no relief. Then I started a Unani treatment course at A&amp;Z Healthcare Centre, where the doctor carefully evaluated my condition, diagnosed an ulcer, and advised a 1-month course.</p><p>Alhamdulillah, after completing the treatment, my symptoms have completely resolved. The doctor was very kind, attentive, and explained everything clearly. Highly satisfied with the care and treatment.</p><b>Patel Faizan</b><small>Google review</small></div>
+      <div class="rev"><div class="stars" aria-label="5 out of 5 stars">★★★★★</div><p>I had a great experience of hijama therapy at A&amp;Z Healthcare Centre. They have male doctor for male patients and female doctor for female patients, ensuring comfort and privacy. Hijama therapy is very effective for detoxification and overall wellness.</p><b>Mohammed Zaid Qureshi</b><small>Google review</small></div>
+      <div class="rev"><div class="stars" aria-label="5 out of 5 stars">★★★★★</div><p>Alhamdulillah wonderful medical practice of this health centre. I highly recommend everyone please do visit if you have any health challenge.</p><b>Hina Fatima Sayed</b><small>Google review</small></div>
+    </div>
+  </div>
+</section>
+
+<section class="book" id="book">
+  <div class="wrap book-grid">
+    <div>
+      <div class="eyebrow">Appointments</div>
+      <h2>Book your consultation</h2>
+      <p class="lead">Send your request and we will confirm a time with you on WhatsApp.</p>
+      <ul class="contact-list">
+        <li><div class="ico" style="margin:0"><svg viewBox="0 0 24 24"><path d="M12 22s7-6.5 7-12a7 7 0 10-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg></div><div><b>Clinic</b><span>19-C, Grace Plaza Shopping Centre, opp. Sabri Masjid,<br>Jogeshwari West, Mumbai 400102</span></div></li>
+        <li><div class="ico" style="margin:0"><svg viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z"/></svg></div><div><b>Phone / WhatsApp</b><span><a href="tel:+917208433163">+91 72084 33163</a> (call or WhatsApp)</span></div></li>
+        <li><div class="ico" style="margin:0"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div><div style="flex:1"><b>Clinic hours</b>
+          <table class="hours"><tr><td>Monday – Saturday</td><td>7:00 PM – 10:00 PM</td></tr><tr><td>Sunday</td><td>Closed</td></tr></table></div></li>
+      </ul>
+    </div>
+    <form id="bookForm" novalidate>
+      <div class="row">
+        <div><label for="name">Your name</label><input id="name" required autocomplete="name"></div>
+        <div><label for="phone">Phone number</label><input id="phone" type="tel" required autocomplete="tel"></div>
+      </div>
+      <div class="row">
+        <div><label for="svc">I'm interested in</label>
+          <select id="svc"><option>General OPD</option><option>Unani consultation</option><option>Hijama (cupping)</option><option>Massage therapy</option><option>Leech therapy</option><option>Chronic condition care</option></select></div>
+        <div><label for="when">Preferred day / time</label><input id="when" placeholder="e.g. Saturday morning"></div>
+      </div>
+      <label for="msg">Briefly, what brings you in?</label>
+      <textarea id="msg" placeholder="Optional"></textarea>
+      <button class="btn btn-primary" type="submit" style="width:100%;justify-content:center">Request via WhatsApp</button>
+      <p class="hint" id="hint">Women patients: proper privacy arrangements are available. This opens WhatsApp with your details filled in. Nothing is stored on this website.</p>
+    </form>
+  </div>
+</section>
+
+<section class="blog" id="blog">
+  <div class="wrap">
+    <div class="eyebrow">Blog</div>
+    <h2>Notes on natural healing</h2>
+    <p class="lead">Simple, reliable reading on Unani medicine, therapies and everyday wellness.</p>
+    <div class="posts" id="blogList"></div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap">
+    <div class="eyebrow">Questions</div>
+    <h2>Good to know</h2>
+    <div class="faq">
+      <details><summary>What is Unani medicine?</summary><p>Unani is a traditional system of medicine that views health as a balance within the body and between the body and its environment. Treatment uses herbal medicines, regimenal therapies, diet and lifestyle guidance.</p></details>
+      <details><summary>Is hijama safe?</summary><p>When performed by a trained practitioner with sterile, single-use equipment, it is considered low-risk for most adults. It is not suitable for everyone, so it is only offered after a consultation.</p></details>
+      <details><summary>Can I take Unani treatment with my current medicines?</summary><p>Often yes, but please tell the doctor about everything you take. Do not stop prescribed medication without medical advice.</p></details>
+      <details><summary>How long does treatment take?</summary><p>It depends on the condition. Recent concerns may settle quickly, while chronic conditions need a longer plan with regular follow-ups.</p></details>
+    </div>
+  </div>
+</section>
+</main>
+
+<main id="postPage" hidden><article class="article" id="article"></article></main>
+
+<div class="band" aria-hidden="true"></div>
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div><img src="logo.png" alt="A&amp;Z Healthcare Centre" style="height:84px;background:#faf6ec;border-radius:14px;padding:8px;margin-bottom:14px"><h4>A and Z Healthcare</h4><p>A Unani clinic focused on natural healing, led by Dr. Hafsa Patel, Assistant Professor and Master's in Unani Medicine.</p></div>
+      <div><h4>Explore</h4><a href="#unani">What is Unani?</a><a href="#about">About</a><a href="#services">Treatments</a><a href="#blog">Blog</a><a href="#faq">FAQ</a></div>
+      <div><h4>Contact</h4><a href="#book">Book a visit</a>19-C, Grace Plaza Shopping Centre, opp. Sabri Masjid,<br>Jogeshwari West, Mumbai 400102<br>Mon – Sat, 7 PM – 10 PM<br><a href="tel:+917208433163" style="margin-top:8px">+91 72084 33163</a></div>
+    </div>
+    <p class="disc">The information on this website is for general awareness and is not a substitute for professional medical advice, diagnosis or emergency care. In an emergency, contact your nearest hospital.<br>© <span id="yr"></span> A and Z Healthcare, Mumbai.</p>
+  </div>
+</footer>
+
+<a class="wa" id="waFloat" href="#book">Book a visit</a>
+
+<script>
+/* Clinic WhatsApp number, international format, digits only */
+var WHATSAPP_NUMBER = "917208433163";
+
+document.getElementById('yr').textContent = new Date().getFullYear();
+document.querySelectorAll('#menu a').forEach(function(a){a.addEventListener('click',function(){document.getElementById('menu').classList.remove('open')})});
+
+document.getElementById('bookForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  var n = document.getElementById('name').value.trim();
+  var p = document.getElementById('phone').value.trim();
+  if(!n || !p){ document.getElementById('hint').textContent = 'Please enter your name and phone number.'; return; }
+  var text = "Hello, I'd like to book an appointment at A and Z Healthcare.\n" +
+    "Name: " + n + "\nPhone: " + p +
+    "\nInterested in: " + document.getElementById('svc').value +
+    "\nPreferred time: " + (document.getElementById('when').value.trim() || "Any") +
+    (document.getElementById('msg').value.trim() ? "\nNotes: " + document.getElementById('msg').value.trim() : "");
+  var url = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + encodeURIComponent(text);
+  var h = document.getElementById('hint');
+  h.innerHTML = 'Ready: <a href="' + url + '" target="_blank" rel="noopener" style="color:var(--green-700);font-weight:600">open WhatsApp to send your request</a>';
+});
+var POSTS = [{"slug": "understanding-your-mizaj", "tag": "Unani basics", "title": "What is your mizaj? Understanding temperament in Unani", "date": "November 2026", "excerpt": "Why two people with the same complaint may be given different advice.", "body": ["In Unani medicine, every person is understood to have a mizaj, a temperament that describes the natural balance of hot, cold, moist and dry qualities in the body. It is shaped by the four humors: dam (blood), balgham (phlegm), safra (yellow bile) and sauda (black bile).", "Your mizaj influences how you respond to food, weather, stress and illness. That is why two patients with the same complaint can receive different diet and treatment advice from a Unani physician.", "At a consultation, the physician looks at your medical history, appetite and digestion, sleep, energy, pulse and physical features. This is a traditional framework used to personalise care. It is not a laboratory test, and it works alongside, not instead of, any investigations your condition needs.", "If you would like a personalised assessment, you can book a consultation at the clinic."]}, {"slug": "hijama-first-session", "tag": "Therapies", "title": "Hijama (cupping): what to expect at your first session", "date": "November 2026", "excerpt": "A calm walk-through of suitability, the session itself and aftercare.", "body": ["Hijama is a traditional therapy used in Unani medicine for centuries. Before any session, the doctor will ask about your health, medications and past history to check that it is suitable for you.", "The session is carried out with clean, sterile, single-use equipment. Cups are applied to chosen areas of the body and the whole process is explained to you as it goes on.", "Hijama is not suitable for everyone. Please tell the doctor if you are pregnant, take blood thinners, have a bleeding disorder or severe anaemia, or are feeling unwell on the day.", "After the session, drink water, eat something light and avoid strenuous activity for the rest of the day. At A and Z Healthcare, hijama is available for both male and female patients, with proper privacy arrangements for women, and a male doctor is available on prior appointment."]}, {"slug": "eating-for-balance", "tag": "Diet & lifestyle", "title": "Eating for balance: simple Unani food principles", "date": "November 2026", "excerpt": "In Unani, food is the first medicine. Here are a few everyday habits.", "body": ["In Unani care, ghiza (food) is considered the first and gentlest form of treatment. Many of its principles are practical and easy to follow.", "Eat when you are genuinely hungry and stop before you feel full, leaving some room in the stomach. Chew slowly, keep regular meal times and favour fresh, seasonal, home-cooked food.", "Sleep, movement and emotional calm matter as much as diet. A well-chosen meal will not make up for chronic lack of sleep or constant stress.", "Because every person's mizaj is different, the ideal foods for you may not suit someone else. This article is general information and not personal medical advice. For a plan built around you, book a consultation."]}];
+function esc(t){return t.replace(/&/g,'&amp;').replace(/</g,'&lt;')}
+document.getElementById('blogList').innerHTML = POSTS.map(function(p){
+  return '<a class="post-card" href="#post-'+p.slug+'"><span class="tag">'+esc(p.tag)+'</span><h3>'+esc(p.title)+'</h3><p>'+esc(p.excerpt)+'</p><span class="more">Read article →</span></a>';
+}).join('');
+function route(){
+  var h = location.hash.slice(1), home=document.getElementById('top'), pg=document.getElementById('postPage');
+  var post = POSTS.filter(function(p){return 'post-'+p.slug===h})[0];
+  if(post){
+    document.getElementById('article').innerHTML = '<a class="back" href="#blog">← All articles</a><span class="tag">'+esc(post.tag)+'</span><h1>'+esc(post.title)+'</h1><div class="meta">A and Z Healthcare · '+esc(post.date)+'</div>'+post.body.map(function(x){return '<p>'+esc(x)+'</p>'}).join('')+'<a class="btn btn-primary" href="#book">Book a consultation</a>';
+    home.hidden=true; pg.hidden=false; window.scrollTo(0,0); document.title=post.title+' | A and Z Healthcare';
+  } else {
+    var wasPost=!pg.hidden; home.hidden=false; pg.hidden=true; document.title='A and Z Healthcare | Unani Clinic, Mumbai';
+    var el=h&&document.getElementById(h); if(el){ el.scrollIntoView(); } else if(wasPost){ window.scrollTo(0,0); }
+  }
+}
+window.addEventListener('hashchange',route); route();
+</script>
+</body>
+</html>
