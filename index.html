@@ -1,28 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-IN">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>A and Z Healthcare | Unani Clinic, Mumbai</title>
-<meta name="description" content="A and Z Healthcare is a Unani clinic in Mumbai led by Dr. Hafsa Patel, Assistant Professor and MD. Medicine in Unani. Natural healing, hijama, herbal Unani medicine and chronic care.">
-<link rel="canonical" href="https://a-and-z.vercel.app/">
+<title>Unani Clinic &amp; Hijama in Jogeshwari, Mumbai | A and Z Healthcare</title>
+<meta name="description" content="Unani clinic in Jogeshwari West, Mumbai led by Dr. Hafsa Patel (MD. Medicine in Unani). Hijama, herbal Unani medicine &amp; online consultations. Book on WhatsApp.">
+<link rel="canonical" href="https://www.aandzclinic.com/">
 <link rel="icon" type="image/png" href="/logo.png">
 <link rel="apple-touch-icon" href="/logo.png">
 <meta name="theme-color" content="#1e6b2f">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="A and Z Healthcare">
 <meta property="og:locale" content="en_IN">
-<meta property="og:url" content="https://a-and-z.vercel.app/">
-<meta property="og:title" content="A and Z Healthcare | Unani Clinic, Jogeshwari, Mumbai">
+<meta property="og:url" content="https://www.aandzclinic.com/">
+<meta property="og:title" content="A and Z Healthcare | Unani Clinic &amp; Hijama, Jogeshwari, Mumbai">
 <meta property="og:description" content="Unani clinic in Jogeshwari West, Mumbai, led by Dr. Hafsa Patel (MD. Medicine in Unani). Hijama, herbal Unani medicine, chronic care and online consultations.">
-<meta property="og:image" content="https://a-and-z.vercel.app/hafsa-photo.jpg">
+<meta property="og:image" content="https://www.aandzclinic.com/hafsa-photo.jpg">
 <meta property="og:image:width" content="800">
 <meta property="og:image:height" content="1000">
 <meta property="og:image:alt" content="Dr. Hafsa Patel, Unani physician at A and Z Healthcare">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="A and Z Healthcare | Unani Clinic, Mumbai">
 <meta name="twitter:description" content="Unani clinic in Jogeshwari West, Mumbai, led by Dr. Hafsa Patel (MD. Medicine in Unani). Hijama, herbal Unani medicine, chronic care and online consultations.">
-<meta name="twitter:image" content="https://a-and-z.vercel.app/hafsa-photo.jpg">
+<meta name="twitter:image" content="https://www.aandzclinic.com/hafsa-photo.jpg">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -30,11 +30,19 @@
   "name": "A and Z Healthcare",
   "alternateName": "A&Z Healthcare Centre",
   "description": "Unani clinic offering Unani consultation, hijama (cupping), massage therapy, leech therapy, chronic condition care and online consultations.",
-  "url": "https://a-and-z.vercel.app/",
-  "logo": "https://a-and-z.vercel.app/logo.png",
-  "image": "https://a-and-z.vercel.app/hafsa-photo.jpg",
+  "url": "https://www.aandzclinic.com/",
+  "logo": "https://www.aandzclinic.com/logo.png",
+  "image": "https://www.aandzclinic.com/hafsa-photo.jpg",
   "telephone": "+91-72084-33163",
   "medicalSpecialty": "Unani medicine",
+  "areaServed": ["Jogeshwari", "Andheri", "Goregaon", "Mumbai"],
+  "availableService": [
+    {"@type": "MedicalTherapy", "name": "Unani consultation"},
+    {"@type": "MedicalTherapy", "name": "Hijama (cupping) therapy"},
+    {"@type": "MedicalTherapy", "name": "Leech therapy"},
+    {"@type": "MedicalTherapy", "name": "Massage therapy"},
+    {"@type": "MedicalTherapy", "name": "Online Unani consultation"}
+  ],
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "19-C, Grace Plaza Shopping Centre, opp. Sabri Masjid",
@@ -792,7 +800,7 @@ function route(){
     document.getElementById('article').innerHTML = '<a class="back" href="#blog">← All articles</a><span class="tag">'+esc(post.tag)+'</span><h1>'+esc(post.title)+'</h1><div class="meta">A and Z Healthcare · '+esc(post.date)+'</div>'+post.body.map(function(x){return '<p>'+esc(x)+'</p>'}).join('')+'<a class="btn btn-primary" href="#book">Book a consultation</a>';
     home.hidden=true; pg.hidden=false; window.scrollTo(0,0); document.title=post.title+' | A and Z Healthcare';
   } else {
-    var wasPost=!pg.hidden; home.hidden=false; pg.hidden=true; document.title='A and Z Healthcare | Unani Clinic, Mumbai';
+    var wasPost=!pg.hidden; home.hidden=false; pg.hidden=true; document.title='Unani Clinic & Hijama in Jogeshwari, Mumbai | A and Z Healthcare';
     var el=h&&document.getElementById(h); if(el){ el.scrollIntoView(); } else if(wasPost){ window.scrollTo(0,0); }
   }
 }
