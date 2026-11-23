@@ -46,6 +46,9 @@ EXTRA_CSS = '''
 .prose ul{margin:0 0 20px 0;padding-left:22px}
 .prose li{margin-bottom:8px;font-size:17px;line-height:1.7}
 .prose li::marker{color:var(--gold)}
+.related{margin-top:26px;padding:14px 18px;background:var(--cream-2);border-left:3px solid var(--gold);border-radius:8px;font-size:16px!important}
+.related a{color:var(--green-700);font-weight:600;text-decoration:none}
+.related a:hover{text-decoration:underline}
 .art-cta{margin:44px 0 10px;background:var(--green-900);color:#fff;border-radius:var(--radius);padding:28px 30px;position:relative;overflow:hidden;border:2px solid var(--gold)}
 .art-cta::before{content:"";position:absolute;inset:0;background-image:var(--geo-gold);background-size:80px;opacity:.3;pointer-events:none}
 .art-cta>*{position:relative}
@@ -86,6 +89,9 @@ def blocks(body):
             out.append(f'<h2>{e(val)}</h2>')
         elif kind == 'ul':
             out.append('<ul>' + ''.join(f'<li>{e(i)}</li>' for i in val) + '</ul>')
+        elif kind == 'links':  # ("links", [("Label", "/url"), ...])
+            out.append('<p class="related"><b>Related:</b> ' +
+                       ' · '.join(f'<a href="{e(u)}">{e(t)}</a>' for t, u in val) + '</p>')
     return '\n  '.join(out)
 
 
@@ -125,7 +131,7 @@ def crumbs_ld(items):
         {"@type": "ListItem", "position": i + 1, "name": n, "item": SITE + u} for i, (n, u) in enumerate(items)]}
 
 
-def page(title, desc, path, body, graph, og_type='website', image='/hafsa-photo.jpg'):
+def page(title, desc, path, body, graph, og_type='website', image='/img/share.jpg'):
     url = SITE + path
     ld = {"@context": "https://schema.org", "@graph": graph}
     return f'''<!DOCTYPE html>
@@ -147,7 +153,9 @@ def page(title, desc, path, body, graph, og_type='website', image='/hafsa-photo.
 <meta property="og:title" content="{e(title)}">
 <meta property="og:description" content="{e(desc)}">
 <meta property="og:image" content="{SITE}{image}">
-<meta name="twitter:card" content="summary">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <script type="application/ld+json">
 {json.dumps(ld, indent=2, ensure_ascii=False)}
 </script>
@@ -168,8 +176,16 @@ def page(title, desc, path, body, graph, og_type='website', image='/hafsa-photo.
 def write(rel, text):
     path = os.path.join(ROOT, rel)
     os.makedirs(os.path.dirname(path), exist_ok=True)
-    with open(path, 'w', encoding='utf-8', newline='\n') as f:
-        f.write(text)
+    for attempt in range(5):  # OneDrive can briefly lock files while syncing
+        try:
+            with open(path, 'w', encoding='utf-8', newline='\n') as f:
+                f.write(text)
+            return
+        except OSError:
+            if attempt == 4:
+                raise
+            import time
+            time.sleep(1.5)
 
 
 # ---------- treatment pages ----------
@@ -218,12 +234,13 @@ for t in TREATMENTS:
             {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in t['faq']]},
         crumbs_ld([("Home", "/"), ("Treatments", "/#services"), (t['nav'], path)]),
     ]
-    write(f'pages/{t["slug"]}.html', page(t['seo_title'], t['description'], path, body, graph, image=t['image']))
+    write(f'pages/{t["slug"]}.html', page(t['seo_title'], t['description'], path, body, graph))
 
 # ---------- blog posts ----------
 for p in POSTS:
     path = '/blog/' + p['slug']
-    others = [q for q in POSTS if q is not p]
+    others = [q for q in POSTS if q is not p][:3]
+    faq = p.get('faq', [])
     body = f'''<main>
 <article class="article">
   <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/blog">Blog</a> › {e(p["tag"])}</nav>
@@ -232,6 +249,7 @@ for p in POSTS:
   <div class="meta">{e(NAME)}, Jogeshwari West, Mumbai · {e(p["date"])}</div>
   <div class="prose">
   {blocks(p["body"])}
+  {faq_html(faq) if faq else ''}
   </div>
   {cta('Talk to Dr. Hafsa Patel')}
   <p class="art-note">This article is general information and not a substitute for personal medical advice. In an emergency, contact your nearest hospital.</p>
@@ -245,12 +263,16 @@ for p in POSTS:
   </div>
 </section>'''
     graph = [
-        {"@type": "BlogPosting", "headline": p['title'], "description": p['excerpt'],
+        {"@type": "BlogPosting", "headline": p['title'], "description": p.get('description', p['excerpt']),
          "mainEntityOfPage": SITE + path, "url": SITE + path, "inLanguage": "en-IN",
-         "image": SITE + "/hafsa-photo.jpg", "author": ORG, "publisher": ORG},
+         "image": SITE + "/img/share.jpg", "author": ORG, "publisher": ORG},
         crumbs_ld([("Home", "/"), ("Blog", "/blog"), (p['title'], path)]),
     ]
-    write(f'blog/{p["slug"]}.html', page(p['title'] + ' | ' + NAME, p['excerpt'], path, body, graph, 'article'))
+    if faq:
+        graph.append({"@type": "FAQPage", "mainEntity": [
+            {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in faq]})
+    write(f'blog/{p["slug"]}.html', page(p.get('seo_title', p['title'] + ' | ' + NAME),
+                                        p.get('description', p['excerpt']), path, body, graph, 'article'))
 
 # ---------- blog index ----------
 body = f'''<main>
@@ -272,6 +294,30 @@ graph = [{"@type": "Blog", "name": NAME + " Blog", "url": SITE + "/blog", "publi
 write('blog/index.html', page('Unani & Hijama Blog | ' + NAME + ', Mumbai',
                               'Articles on Unani medicine, mizaj (temperament), hijama and healthy eating from ' + NAME + ', a Unani clinic in Jogeshwari West, Mumbai.',
                               '/blog', body, graph))
+
+# ---------- 404 page (Vercel serves /404.html for unknown addresses) ----------
+links = ''.join(f'<a class="post-card" href="/{t["slug"]}"><span class="tag">Treatment</span><h3>{e(t["nav"])}</h3>'
+                f'<span class="more">Learn more →</span></a>' for t in TREATMENTS)
+body = f'''<main>
+<section class="blog-hero" style="text-align:center;padding-bottom:10px">
+  <div class="wrap">
+    <div class="eyebrow">Page not found</div>
+    <h1>Sorry, we couldn't find that page</h1>
+    <p class="lead" style="margin:0 auto">The link may be old or mistyped. Here are some places to start, or message us on WhatsApp and we'll help.</p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:26px">
+      <a class="btn btn-primary" href="/">Go to the homepage</a>
+      <a class="btn btn-ghost" href="{WA}" target="_blank" rel="noopener">Message us on WhatsApp</a>
+    </div>
+  </div>
+</section>
+<section style="padding-top:30px">
+  <div class="wrap"><div class="posts">{links}</div>
+  <p style="text-align:center;margin-top:28px"><a class="more" href="/blog">Read our blog →</a></p></div>
+</section>
+</main>'''
+nf = page('Page not found | ' + NAME, 'This page could not be found.', '/404', body, [ORG])
+nf = nf.replace(f'<link rel="canonical" href="{SITE}/404">\n', '<meta name="robots" content="noindex">\n')
+write('404.html', nf)
 
 # ---------- sitemap + Vercel routes ----------
 urls = ['/'] + ['/' + t['slug'] for t in TREATMENTS] + ['/blog'] + ['/blog/' + p['slug'] for p in POSTS]
