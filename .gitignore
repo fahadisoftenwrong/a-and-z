@@ -1,0 +1,6 @@
+# Local tools and notes (never deployed)
+.claude/
+__pycache__/
+listing-kit.md
+review-request.md
+gbp-posts.md

@@ -1,0 +1,6 @@
+# Source files that build the site; not needed on the live website
+build.py
+content/
+*.md
+.gitignore
+.vercelignore

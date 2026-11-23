@@ -1,6 +1,38 @@
 {
   "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "a-and-z.vercel.app"
+        }
+      ],
+      "destination": "https://www.aandzclinic.com/:path*",
+      "permanent": true
+    }
+  ],
   "rewrites": [
-    { "source": "/blog/:slug", "destination": "/blog/:slug.html" }
+    {
+      "source": "/hijama-jogeshwari",
+      "destination": "/pages/hijama-jogeshwari.html"
+    },
+    {
+      "source": "/leech-therapy-mumbai",
+      "destination": "/pages/leech-therapy-mumbai.html"
+    },
+    {
+      "source": "/online-unani-consultation",
+      "destination": "/pages/online-unani-consultation.html"
+    },
+    {
+      "source": "/unani-skin-treatment",
+      "destination": "/pages/unani-skin-treatment.html"
+    },
+    {
+      "source": "/blog/:slug",
+      "destination": "/blog/:slug.html"
+    }
   ]
 }
