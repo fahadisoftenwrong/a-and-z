@@ -30,12 +30,6 @@
   ]
  },
  {
-  "name": "Arusak",
-  "categories": [
-   "Female Health & Wellbeing"
-  ]
- },
- {
   "name": "Ashokarishta",
   "categories": [
    "Female Health & Wellbeing"
@@ -44,37 +38,7 @@
  {
   "name": "Ashwagandha Tablet",
   "categories": [
-   "Lifestyle conditions"
-  ]
- },
- {
-  "name": "Asraufin",
-  "categories": [
-   "Cardiovascular System"
-  ]
- },
- {
-  "name": "Aujai",
-  "categories": [
-   "Musculoskeletal System"
-  ]
- },
- {
-  "name": "Barsina",
-  "categories": [
-   "Skin Care"
-  ]
- },
- {
-  "name": "Benazir Hair Oil",
-  "categories": [
-   "Hair Care"
-  ]
- },
- {
-  "name": "Cardiobrain-Tab",
-  "categories": [
-   "Lifestyle conditions"
+   "General"
   ]
  },
  {
@@ -84,39 +48,9 @@
   ]
  },
  {
-  "name": "Cinkara",
-  "categories": [
-   "Over the counter"
-  ]
- },
- {
   "name": "Dawa-ul-Misk Motadil Jawahar Wali",
   "categories": [
    "Cardiovascular System"
-  ]
- },
- {
-  "name": "Diabeat",
-  "categories": [
-   "Lifestyle conditions"
-  ]
- },
- {
-  "name": "Dolabi",
-  "categories": [
-   "Urinary System"
-  ]
- },
- {
-  "name": "Gamone",
-  "categories": [
-   "General"
-  ]
- },
- {
-  "name": "Ghaza Husn-e-Afza Special",
-  "categories": [
-   "Over the counter"
   ]
  },
  {
@@ -186,51 +120,9 @@
   ]
  },
  {
-  "name": "Hamdogen",
-  "categories": [
-   "Male Health & Wellbeing"
-  ]
- },
- {
-  "name": "Hamdoroid Ointment",
-  "categories": [
-   "Gastrointestinal System"
-  ]
- },
- {
-  "name": "Hamdoroid® Capsules",
-  "categories": [
-   "Gastrointestinal System"
-  ]
- },
- {
   "name": "Herbal Toothpaste",
   "categories": [
    "Over the counter"
-  ]
- },
- {
-  "name": "Hinzolax Tablet",
-  "categories": [
-   "Lifestyle conditions"
-  ]
- },
- {
-  "name": "Iksir Shifa",
-  "categories": [
-   "Nervous System"
-  ]
- },
- {
-  "name": "Imyoton® Capsule",
-  "categories": [
-   "Lifestyle conditions"
-  ]
- },
- {
-  "name": "Infuza",
-  "categories": [
-   "Respiratory System"
   ]
  },
  {
@@ -330,37 +222,7 @@
   ]
  },
  {
-  "name": "Jernide",
-  "categories": [
-   "Male Health & Wellbeing"
-  ]
- },
- {
-  "name": "Jigreen",
-  "categories": [
-   "Lifestyle conditions"
-  ]
- },
- {
-  "name": "Jigreena",
-  "categories": [
-   "Lifestyle conditions"
-  ]
- },
- {
-  "name": "Jigrol",
-  "categories": [
-   "Lifestyle conditions"
-  ]
- },
- {
   "name": "Joshanda",
-  "categories": [
-   "Respiratory System"
-  ]
- },
- {
-  "name": "Joshina",
   "categories": [
    "Respiratory System"
   ]
@@ -414,12 +276,6 @@
   ]
  },
  {
-  "name": "Kulzum",
-  "categories": [
-   "Over the counter"
-  ]
- },
- {
   "name": "Kushta Qalai",
   "categories": [
    "Male Health & Wellbeing"
@@ -429,18 +285,6 @@
   "name": "Labub Kabir",
   "categories": [
    "Male Health & Wellbeing"
-  ]
- },
- {
-  "name": "Lahmina",
-  "categories": [
-   "General"
-  ]
- },
- {
-  "name": "Larzine",
-  "categories": [
-   "General"
   ]
  },
  {
@@ -456,12 +300,6 @@
   ]
  },
  {
-  "name": "Lipotab",
-  "categories": [
-   "Over the counter"
-  ]
- },
- {
   "name": "Ma-ul-Hayat",
   "categories": [
    "Respiratory System"
@@ -471,12 +309,6 @@
   "name": "Mahayograj Guggulu",
   "categories": [
    "Musculoskeletal System"
-  ]
- },
- {
-  "name": "Mahwari",
-  "categories": [
-   "Female Health & Wellbeing"
   ]
  },
  {
@@ -576,63 +408,15 @@
   ]
  },
  {
-  "name": "Masturin",
-  "categories": [
-   "Female Health & Wellbeing"
-  ]
- },
- {
-  "name": "Matosine",
-  "categories": [
-   "Male Health & Wellbeing"
-  ]
- },
- {
-  "name": "Memoprash",
-  "categories": [
-   "Nervous System"
-  ]
- },
- {
-  "name": "Mubhi Khas",
-  "categories": [
-   "Male Health & Wellbeing"
-  ]
- },
- {
   "name": "Namak Sulemani",
   "categories": [
    "Gastrointestinal System"
   ]
  },
  {
-  "name": "Nargisi Eye Drop",
-  "categories": [
-   "General"
-  ]
- },
- {
-  "name": "Nozeem",
-  "categories": [
-   "Respiratory System"
-  ]
- },
- {
   "name": "Onion Oil",
   "categories": [
    "Hair Care"
-  ]
- },
- {
-  "name": "Pachnol",
-  "categories": [
-   "Gastrointestinal System"
-  ]
- },
- {
-  "name": "Qurs Alkali",
-  "categories": [
-   "Gastrointestinal System"
   ]
  },
  {
@@ -720,24 +504,6 @@
   ]
  },
  {
-  "name": "Saduri® Sugar free",
-  "categories": [
-   "Respiratory System"
-  ]
- },
- {
-  "name": "Safi",
-  "categories": [
-   "Skin Care"
-  ]
- },
- {
-  "name": "SAFI Tablet",
-  "categories": [
-   "Skin Care"
-  ]
- },
- {
   "name": "Safoof Bars",
   "categories": [
    "Skin Care"
@@ -768,33 +534,9 @@
   ]
  },
  {
-  "name": "Slimlean",
-  "categories": [
-   "Lifestyle conditions"
-  ]
- },
- {
-  "name": "Sualin",
-  "categories": [
-   "Respiratory System"
-  ]
- },
- {
   "name": "Zamad Shabab",
   "categories": [
    "Female Health & Wellbeing"
-  ]
- },
- {
-  "name": "Zofine",
-  "categories": [
-   "Male Health & Wellbeing"
-  ]
- },
- {
-  "name": "Zulamla",
-  "categories": [
-   "Hair Care"
   ]
  }
 ]

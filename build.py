@@ -396,7 +396,7 @@ body = f'''<main>
   <div class="wrap">
     <div class="p-list">
     <div class="p-tools">
-      <input id="pSearch" class="p-search" type="search" placeholder="Search by name or use, e.g. Joshina, cough, hair fall" aria-label="Search products">
+      <input id="pSearch" class="p-search" type="search" placeholder="Search by name or use, e.g. Khamira, cough, hair fall" aria-label="Search products">
       <div class="chips" role="group" aria-label="Filter by category">{chips}</div>
     </div>
     <p class="p-count" id="pCount" aria-live="polite">Showing {len(PRODUCTS)} of {len(PRODUCTS)} products</p>
