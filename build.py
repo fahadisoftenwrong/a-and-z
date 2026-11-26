@@ -295,6 +295,115 @@ write('blog/index.html', page('Unani & Hijama Blog | ' + NAME + ', Mumbai',
                               'Articles on Unani medicine, mizaj (temperament), hijama and healthy eating from ' + NAME + ', a Unani clinic in Jogeshwari West, Mumbai.',
                               '/blog', body, graph))
 
+# ---------- Products page (Hamdard range; names/categories from content/hamdard_products.json) ----------
+from urllib.parse import quote
+PRODUCTS = json.load(open(os.path.join(ROOT, 'content', 'hamdard_products.json'), encoding='utf-8'))
+cat_counts = {}
+for pr in PRODUCTS:
+    for c in pr['categories']:
+        cat_counts[c] = cat_counts.get(c, 0) + 1
+cats = sorted(cat_counts, key=lambda c: (-cat_counts[c], c))
+
+
+def slugify(t):
+    return re.sub(r'[^a-z0-9]+', '-', t.lower()).strip('-')
+
+
+def prod_card(pr):
+    msg = f'Assalamualaikum, is {pr["name"]} (Hamdard) available at A&Z Healthcare Centre?'
+    wa = 'https://wa.me/917208433163?text=' + quote(msg)
+    data_cats = ' '.join(slugify(c) for c in pr['categories'])
+    return (f'<article class="prod" data-cats="{data_cats}" data-name="{e(pr["name"].lower())}">'
+            f'<span class="prod-cat">{e(" · ".join(pr["categories"]))}</span>'
+            f'<h3>{e(pr["name"])}</h3>'
+            f'<div class="prod-acts"><a class="prod-ask" href="{e(wa)}" target="_blank" rel="noopener">Ask availability</a>'
+            f'<a class="prod-more" href="{e(pr["url"])}" target="_blank" rel="nofollow noopener">Details ↗</a></div></article>')
+
+
+chips = '<button type="button" class="chip on" data-cat="all">All <span>' + str(len(PRODUCTS)) + '</span></button>' + ''.join(
+    f'<button type="button" class="chip" data-cat="{slugify(c)}">{e(c)} <span>{cat_counts[c]}</span></button>' for c in cats)
+PROD_CSS = '''<style>
+.p-tools{position:sticky;top:80px;z-index:5;background:rgba(250,246,236,.96);backdrop-filter:blur(8px);padding:14px 0 12px;border-bottom:1px solid var(--line);margin-bottom:22px}
+.p-search{width:100%;max-width:420px;margin:0 0 12px;padding:12px 16px;border-radius:999px;border:1.5px solid var(--line);background:#fff;font:inherit;font-size:16px}
+.p-search:focus{outline:2px solid var(--green-500);border-color:transparent}
+.chips{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:none;border:1.5px solid var(--line);background:#fff;color:var(--green-900);border-radius:999px;padding:7px 14px;font:inherit;font-size:14px;font-weight:500;cursor:pointer;white-space:nowrap}
+.chip span{color:var(--muted);font-size:12px;margin-left:2px}
+.chip.on{background:var(--green-900);border-color:var(--green-900);color:#fff}
+.chip.on span{color:#f3e3b5}
+.p-count{font-size:14px;color:var(--muted);margin-bottom:14px}
+.p-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
+.prod{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px 18px;display:flex;flex-direction:column;gap:8px;transition:transform .2s,box-shadow .2s;border-top:3px solid var(--gold)}
+.prod:hover{transform:translateY(-3px);box-shadow:0 12px 26px -14px rgba(23,58,43,.35)}
+.prod-cat{font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);font-weight:700;line-height:1.4}
+.prod h3{font-size:18px;line-height:1.25;flex:1;margin:0}
+.prod-acts{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:4px}
+.prod-ask{background:#25a05a;color:#fff;text-decoration:none;font-size:13.5px;font-weight:600;padding:7px 12px;border-radius:999px}
+.prod-more{color:var(--green-700);font-size:13.5px;font-weight:600;text-decoration:none}
+.prod-more:hover{text-decoration:underline}
+.p-empty{display:none;text-align:center;color:var(--muted);padding:40px 0}
+.p-note{margin-top:34px;font-size:13.5px;color:var(--muted);max-width:820px}
+.p-advice{display:flex;gap:14px;align-items:flex-start;background:var(--green-100);border:1px solid rgba(30,107,47,.18);border-radius:16px;padding:16px 20px;margin-top:22px;max-width:820px;font-size:15.5px;color:var(--green-900)}
+.p-advice b{font-family:Fraunces,serif}
+@media(max-width:860px){.p-tools{top:70px}}
+@media(max-width:520px){.p-grid{grid-template-columns:1fr 1fr;gap:10px}.prod{padding:13px 13px}.prod h3{font-size:15.5px}.prod-ask{font-size:12.5px;padding:6px 10px}.prod-more{font-size:12.5px}}
+</style>'''
+PROD_JS = '''<script>
+(function(){
+  var cards=[].slice.call(document.querySelectorAll('.prod')), chips=[].slice.call(document.querySelectorAll('.chip')),
+      q=document.getElementById('pSearch'), count=document.getElementById('pCount'), empty=document.getElementById('pEmpty'), cat='all';
+  function apply(){
+    var t=(q.value||'').trim().toLowerCase(), n=0;
+    cards.forEach(function(c){
+      var ok=(cat==='all'||(' '+c.dataset.cats+' ').indexOf(' '+cat+' ')>-1)&&(!t||c.dataset.name.indexOf(t)>-1);
+      c.hidden=!ok; if(ok)n++;
+    });
+    count.textContent='Showing '+n+' of '+cards.length+' products';
+    empty.style.display=n?'none':'block';
+  }
+  chips.forEach(function(b){b.addEventListener('click',function(){
+    chips.forEach(function(x){x.classList.remove('on')}); b.classList.add('on'); cat=b.dataset.cat; apply();
+  })});
+  q.addEventListener('input',apply);
+})();
+</script>'''
+body = f'''<main>
+<section class="blog-hero" style="padding-bottom:6px">
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> › Unani medicines</nav>
+    <div class="eyebrow">Unani medicines</div>
+    <h1>Hamdard Unani medicines</h1>
+    <p class="lead">A&amp;Z Healthcare Centre can help you get genuine Hamdard Unani and herbal medicines. Browse the range below, then message us on WhatsApp to check availability at the clinic in Jogeshwari West.</p>
+    <div class="p-advice"><span aria-hidden="true">⚕️</span><div><b>Take Unani medicines on a physician's advice.</b> Many of these are classical Unani formulations. The right medicine and dose depend on your health and temperament (mizaj). Dr. Hafsa Patel can guide you at a consultation, in the clinic or online.</div></div>
+  </div>
+</section>
+<section style="padding-top:18px">
+  <div class="wrap">
+    <div class="p-tools">
+      <input id="pSearch" class="p-search" type="search" placeholder="Search {len(PRODUCTS)} products, e.g. Safi, Joshina" aria-label="Search products">
+      <div class="chips" role="group" aria-label="Filter by category">{chips}</div>
+    </div>
+    <p class="p-count" id="pCount" aria-live="polite">Showing {len(PRODUCTS)} of {len(PRODUCTS)} products</p>
+    <div class="p-grid">{"".join(prod_card(pr) for pr in PRODUCTS)}</div>
+    <p class="p-empty" id="pEmpty">No products match your search. Try another name, or <a href="{WA}" target="_blank" rel="noopener">ask us on WhatsApp</a>.</p>
+    <p class="p-note">Hamdard and the product names shown are trademarks of Hamdard Laboratories (India). Product details, ingredients and pack sizes are on hamdard.in (the "Details" links). Availability and prices are confirmed by the clinic on WhatsApp. This list is for information only and is not medical advice.</p>
+  </div>
+</section>
+</main>'''
+graph = [
+    {"@type": "CollectionPage", "name": "Hamdard Unani medicines at " + NAME, "url": SITE + "/products",
+     "inLanguage": "en-IN", "publisher": ORG,
+     "mainEntity": {"@type": "ItemList", "numberOfItems": len(PRODUCTS),
+                    "itemListElement": [{"@type": "ListItem", "position": i + 1, "name": pr['name']} for i, pr in enumerate(PRODUCTS)]}},
+    crumbs_ld([("Home", "/"), ("Unani medicines", "/products")]),
+]
+pp = page('Hamdard Unani Medicines in Jogeshwari, Mumbai | ' + NAME,
+          f'Browse {len(PRODUCTS)} Hamdard Unani and herbal medicines and check availability at A&Z Healthcare Centre, Jogeshwari West, Mumbai, on WhatsApp.',
+          '/products', body, graph)
+pp = pp.replace('</head>', PROD_CSS + '\n</head>', 1).replace('</body>', PROD_JS + '\n</body>', 1)
+write('pages/products.html', pp)
+
 # ---------- 404 page (Vercel serves /404.html for unknown addresses) ----------
 links = ''.join(f'<a class="post-card" href="/{t["slug"]}"><span class="tag">Treatment</span><h3>{e(t["nav"])}</h3>'
                 f'<span class="more">Learn more →</span></a>' for t in TREATMENTS)
@@ -320,7 +429,7 @@ nf = nf.replace(f'<link rel="canonical" href="{SITE}/404">\n', '<meta name="robo
 write('404.html', nf)
 
 # ---------- sitemap + Vercel routes ----------
-urls = ['/'] + ['/' + t['slug'] for t in TREATMENTS] + ['/blog'] + ['/blog/' + p['slug'] for p in POSTS]
+urls = ['/'] + ['/' + t['slug'] for t in TREATMENTS] + ['/products', '/blog'] + ['/blog/' + p['slug'] for p in POSTS]
 write('sitemap.xml', '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
       ''.join(f'  <url>\n    <loc>{SITE}{u}</loc>\n    <lastmod>{LASTMOD}</lastmod>\n  </url>\n' for u in urls) + '</urlset>\n')
 vercel = {"trailingSlash": False,
@@ -329,6 +438,7 @@ vercel = {"trailingSlash": False,
                          "destination": SITE + "/:path*", "permanent": True}],
           "rewrites":
           [{"source": "/" + t['slug'], "destination": f"/pages/{t['slug']}.html"} for t in TREATMENTS] +
+          [{"source": "/products", "destination": "/pages/products.html"}] +
           [{"source": "/blog/:slug", "destination": "/blog/:slug.html"}]}
 write('vercel.json', json.dumps(vercel, indent=2) + '\n')
 

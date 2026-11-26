@@ -35,6 +35,10 @@
       "destination": "/pages/unani-skin-treatment.html"
     },
     {
+      "source": "/products",
+      "destination": "/pages/products.html"
+    },
+    {
       "source": "/blog/:slug",
       "destination": "/blog/:slug.html"
     }
