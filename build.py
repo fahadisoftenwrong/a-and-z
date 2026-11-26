@@ -295,9 +295,9 @@ write('blog/index.html', page('Unani & Hijama Blog | ' + NAME + ', Mumbai',
                               'Articles on Unani medicine, mizaj (temperament), hijama and healthy eating from ' + NAME + ', a Unani clinic in Jogeshwari West, Mumbai.',
                               '/blog', body, graph))
 
-# ---------- Products page (Hamdard range; names/categories from content/hamdard_products.json) ----------
+# ---------- Products page (names/categories from content/products.json) ----------
 from urllib.parse import quote
-PRODUCTS = json.load(open(os.path.join(ROOT, 'content', 'hamdard_products.json'), encoding='utf-8'))
+PRODUCTS = json.load(open(os.path.join(ROOT, 'content', 'products.json'), encoding='utf-8'))
 cat_counts = {}
 for pr in PRODUCTS:
     for c in pr['categories']:
@@ -310,7 +310,7 @@ def slugify(t):
 
 
 def prod_card(pr):
-    msg = f'Assalamualaikum, I would like to buy {pr["name"]} (Hamdard). Is it available at A&Z Healthcare Centre?'
+    msg = f'Assalamualaikum, I would like to buy {pr["name"]}. Is it available at A&Z Healthcare Centre?'
     wa = 'https://wa.me/917208433163?text=' + quote(msg)
     data_cats = ' '.join(slugify(c) for c in pr['categories'])
     return (f'<article class="prod" data-cats="{data_cats}" data-name="{e(pr["name"].lower())}">'
@@ -374,8 +374,8 @@ body = f'''<main>
   <div class="wrap">
     <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> › Unani medicines</nav>
     <div class="eyebrow">Unani medicines</div>
-    <h1>Hamdard Unani medicines</h1>
-    <p class="lead">Buy genuine Hamdard Unani and herbal medicines through A&amp;Z Healthcare Centre, Jogeshwari West. Find the medicine below and tap <b>Enquire to buy</b>. We'll confirm availability and price on WhatsApp.</p>
+    <h1>Unani &amp; herbal medicines</h1>
+    <p class="lead">Buy genuine Unani and herbal medicines through A&amp;Z Healthcare Centre, Jogeshwari West. Find the medicine below and tap <b>Enquire to buy</b>. We'll confirm availability and price on WhatsApp.</p>
     <div class="p-advice"><span aria-hidden="true">⚕️</span><div><b>Take Unani medicines on a physician's advice.</b> Many of these are classical Unani formulations. The right medicine and dose depend on your health and temperament (mizaj). Dr. Hafsa Patel can guide you at a consultation, in the clinic or online.</div></div>
   </div>
 </section>
@@ -388,19 +388,19 @@ body = f'''<main>
     <p class="p-count" id="pCount" aria-live="polite">Showing {len(PRODUCTS)} of {len(PRODUCTS)} products</p>
     <div class="p-grid">{"".join(prod_card(pr) for pr in PRODUCTS)}</div>
     <p class="p-empty" id="pEmpty">No products match your search. Try another name, or <a href="{WA}" target="_blank" rel="noopener">ask us on WhatsApp</a>.</p>
-    <p class="p-note">Hamdard and the product names shown are trademarks of Hamdard Laboratories (India). Availability and prices are confirmed by the clinic on WhatsApp. This list is for information only and is not medical advice.</p>
+    <p class="p-note">Product names are trademarks of their respective owners. Availability and prices are confirmed by the clinic on WhatsApp. This list is for information only and is not medical advice.</p>
   </div>
 </section>
 </main>'''
 graph = [
-    {"@type": "CollectionPage", "name": "Hamdard Unani medicines at " + NAME, "url": SITE + "/products",
+    {"@type": "CollectionPage", "name": "Unani medicines at " + NAME, "url": SITE + "/products",
      "inLanguage": "en-IN", "publisher": ORG,
      "mainEntity": {"@type": "ItemList", "numberOfItems": len(PRODUCTS),
                     "itemListElement": [{"@type": "ListItem", "position": i + 1, "name": pr['name']} for i, pr in enumerate(PRODUCTS)]}},
     crumbs_ld([("Home", "/"), ("Unani medicines", "/products")]),
 ]
-pp = page('Hamdard Unani Medicines in Jogeshwari, Mumbai | ' + NAME,
-          f'Browse {len(PRODUCTS)} Hamdard Unani and herbal medicines and check availability at A&Z Healthcare Centre, Jogeshwari West, Mumbai, on WhatsApp.',
+pp = page('Unani Medicines in Jogeshwari, Mumbai | ' + NAME,
+          f'Browse {len(PRODUCTS)} Unani and herbal medicines and check availability at A&Z Healthcare Centre, Jogeshwari West, Mumbai, on WhatsApp.',
           '/products', body, graph)
 pp = pp.replace('</head>', PROD_CSS + '\n</head>', 1).replace('</body>', PROD_JS + '\n</body>', 1)
 write('pages/products.html', pp)
