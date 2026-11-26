@@ -310,14 +310,13 @@ def slugify(t):
 
 
 def prod_card(pr):
-    msg = f'Assalamualaikum, is {pr["name"]} (Hamdard) available at A&Z Healthcare Centre?'
+    msg = f'Assalamualaikum, I would like to buy {pr["name"]} (Hamdard). Is it available at A&Z Healthcare Centre?'
     wa = 'https://wa.me/917208433163?text=' + quote(msg)
     data_cats = ' '.join(slugify(c) for c in pr['categories'])
     return (f'<article class="prod" data-cats="{data_cats}" data-name="{e(pr["name"].lower())}">'
-            f'<span class="prod-cat">{e(" · ".join(pr["categories"]))}</span>'
             f'<h3>{e(pr["name"])}</h3>'
-            f'<div class="prod-acts"><a class="prod-ask" href="{e(wa)}" target="_blank" rel="noopener">Ask availability</a>'
-            f'<a class="prod-more" href="{e(pr["url"])}" target="_blank" rel="nofollow noopener">Details ↗</a></div></article>')
+            f'<a class="prod-ask" href="{e(wa)}" target="_blank" rel="noopener" aria-label="Enquire on WhatsApp to buy {e(pr["name"])}">'
+            f'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11.5a8.5 8.5 0 01-12.6 7.4L3 20l1.2-4.2A8.5 8.5 0 1120 11.5z"/></svg>Enquire to buy</a></article>')
 
 
 chips = '<button type="button" class="chip on" data-cat="all">All <span>' + str(len(PRODUCTS)) + '</span></button>' + ''.join(
@@ -337,9 +336,11 @@ PROD_CSS = '''<style>
 .prod{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px 18px;display:flex;flex-direction:column;gap:8px;transition:transform .2s,box-shadow .2s;border-top:3px solid var(--gold)}
 .prod:hover{transform:translateY(-3px);box-shadow:0 12px 26px -14px rgba(23,58,43,.35)}
 .prod-cat{font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);font-weight:700;line-height:1.4}
-.prod h3{font-size:18px;line-height:1.25;flex:1;margin:0}
+.prod h3{font-size:18px;line-height:1.25;flex:1;margin:0 0 4px}
 .prod-acts{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:4px}
-.prod-ask{background:#25a05a;color:#fff;text-decoration:none;font-size:13.5px;font-weight:600;padding:7px 12px;border-radius:999px}
+.prod-ask{display:inline-flex;align-items:center;justify-content:center;gap:6px;background:#25a05a;color:#fff;text-decoration:none;font-size:14px;font-weight:600;padding:9px 14px;border-radius:999px;align-self:flex-start}
+.prod-ask:hover{background:#1e8a4c}
+.prod-ask svg{width:16px;height:16px;fill:none;stroke:#fff;stroke-width:2}
 .prod-more{color:var(--green-700);font-size:13.5px;font-weight:600;text-decoration:none}
 .prod-more:hover{text-decoration:underline}
 .p-empty{display:none;text-align:center;color:var(--muted);padding:40px 0}
@@ -347,7 +348,7 @@ PROD_CSS = '''<style>
 .p-advice{display:flex;gap:14px;align-items:flex-start;background:var(--green-100);border:1px solid rgba(30,107,47,.18);border-radius:16px;padding:16px 20px;margin-top:22px;max-width:820px;font-size:15.5px;color:var(--green-900)}
 .p-advice b{font-family:Fraunces,serif}
 @media(max-width:860px){.p-tools{top:70px}}
-@media(max-width:520px){.p-grid{grid-template-columns:1fr 1fr;gap:10px}.prod{padding:13px 13px}.prod h3{font-size:15.5px}.prod-ask{font-size:12.5px;padding:6px 10px}.prod-more{font-size:12.5px}}
+@media(max-width:520px){.p-grid{grid-template-columns:1fr 1fr;gap:10px}.prod{padding:13px 13px}.prod h3{font-size:15.5px}.prod-ask{font-size:12.5px;padding:8px 10px;align-self:stretch}}
 </style>'''
 PROD_JS = '''<script>
 (function(){
@@ -374,7 +375,7 @@ body = f'''<main>
     <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> › Unani medicines</nav>
     <div class="eyebrow">Unani medicines</div>
     <h1>Hamdard Unani medicines</h1>
-    <p class="lead">A&amp;Z Healthcare Centre can help you get genuine Hamdard Unani and herbal medicines. Browse the range below, then message us on WhatsApp to check availability at the clinic in Jogeshwari West.</p>
+    <p class="lead">Buy genuine Hamdard Unani and herbal medicines through A&amp;Z Healthcare Centre, Jogeshwari West. Find the medicine below and tap <b>Enquire to buy</b>. We'll confirm availability and price on WhatsApp.</p>
     <div class="p-advice"><span aria-hidden="true">⚕️</span><div><b>Take Unani medicines on a physician's advice.</b> Many of these are classical Unani formulations. The right medicine and dose depend on your health and temperament (mizaj). Dr. Hafsa Patel can guide you at a consultation, in the clinic or online.</div></div>
   </div>
 </section>
@@ -387,7 +388,7 @@ body = f'''<main>
     <p class="p-count" id="pCount" aria-live="polite">Showing {len(PRODUCTS)} of {len(PRODUCTS)} products</p>
     <div class="p-grid">{"".join(prod_card(pr) for pr in PRODUCTS)}</div>
     <p class="p-empty" id="pEmpty">No products match your search. Try another name, or <a href="{WA}" target="_blank" rel="noopener">ask us on WhatsApp</a>.</p>
-    <p class="p-note">Hamdard and the product names shown are trademarks of Hamdard Laboratories (India). Product details, ingredients and pack sizes are on hamdard.in (the "Details" links). Availability and prices are confirmed by the clinic on WhatsApp. This list is for information only and is not medical advice.</p>
+    <p class="p-note">Hamdard and the product names shown are trademarks of Hamdard Laboratories (India). Availability and prices are confirmed by the clinic on WhatsApp. This list is for information only and is not medical advice.</p>
   </div>
 </section>
 </main>'''
