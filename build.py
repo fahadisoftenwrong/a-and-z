@@ -13,6 +13,7 @@ import sys
 
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), 'content'))
 from pages import TREATMENTS, POSTS  # noqa: E402
+from product_uses import USES  # noqa: E402
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 SITE = 'https://www.aandzclinic.com'
@@ -313,8 +314,11 @@ def prod_card(pr):
     msg = f'Assalamualaikum, I would like to buy {pr["name"]}. Is it available at A&Z Healthcare Centre?'
     wa = 'https://wa.me/917208433163?text=' + quote(msg)
     data_cats = ' '.join(slugify(c) for c in pr['categories'])
-    return (f'<article class="prod" data-cats="{data_cats}" data-name="{e(pr["name"].lower())}">'
+    use = USES[pr['name']]
+    search = (pr['name'] + ' ' + use + ' ' + ' '.join(pr['categories'])).lower()
+    return (f'<article class="prod" data-cats="{data_cats}" data-name="{e(search)}">'
             f'<h3>{e(pr["name"])}</h3>'
+            f'<p class="prod-use">{e(use)}</p>'
             f'<a class="prod-ask" href="{e(wa)}" target="_blank" rel="noopener" aria-label="Enquire on WhatsApp to buy {e(pr["name"])}">'
             f'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11.5a8.5 8.5 0 01-12.6 7.4L3 20l1.2-4.2A8.5 8.5 0 1120 11.5z"/></svg>Enquire to buy</a></article>')
 
@@ -336,7 +340,8 @@ PROD_CSS = '''<style>
 .prod{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px 18px;display:flex;flex-direction:column;gap:8px;transition:transform .2s,box-shadow .2s;border-top:3px solid var(--gold)}
 .prod:hover{transform:translateY(-3px);box-shadow:0 12px 26px -14px rgba(23,58,43,.35)}
 .prod-cat{font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);font-weight:700;line-height:1.4}
-.prod h3{font-size:18px;line-height:1.25;flex:1;margin:0 0 4px}
+.prod h3{font-size:18px;line-height:1.25;margin:0}
+.prod-use{font-size:14px;line-height:1.5;color:var(--muted);flex:1;margin:0 0 6px}
 .prod-acts{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:4px}
 .prod-ask{display:inline-flex;align-items:center;justify-content:center;gap:6px;background:#25a05a;color:#fff;text-decoration:none;font-size:14px;font-weight:600;padding:9px 14px;border-radius:999px;align-self:flex-start}
 .prod-ask:hover{background:#1e8a4c}
@@ -344,11 +349,19 @@ PROD_CSS = '''<style>
 .prod-more{color:var(--green-700);font-size:13.5px;font-weight:600;text-decoration:none}
 .prod-more:hover{text-decoration:underline}
 .p-empty{display:none;text-align:center;color:var(--muted);padding:40px 0}
+.p-types{margin-top:48px;max-width:900px}
+.p-types h2{font-size:clamp(24px,3vw,30px)}
+.p-types>p{color:var(--muted);margin-bottom:14px}
+.p-types dl{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin:18px 0}
+.p-types dl div{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.p-types dt{font-family:Fraunces,serif;font-weight:600;color:var(--green-900);font-size:17px}
+.p-types dd{color:var(--muted);font-size:14.5px;line-height:1.55;margin-top:4px}
+.p-types a{color:var(--green-700);font-weight:600}
 .p-note{margin-top:34px;font-size:13.5px;color:var(--muted);max-width:820px}
 .p-advice{display:flex;gap:14px;align-items:flex-start;background:var(--green-100);border:1px solid rgba(30,107,47,.18);border-radius:16px;padding:16px 20px;margin-top:22px;max-width:820px;font-size:15.5px;color:var(--green-900)}
 .p-advice b{font-family:Fraunces,serif}
 @media(max-width:860px){.p-tools{top:70px}}
-@media(max-width:520px){.p-grid{grid-template-columns:1fr 1fr;gap:10px}.prod{padding:13px 13px}.prod h3{font-size:15.5px}.prod-ask{font-size:12.5px;padding:8px 10px;align-self:stretch}}
+@media(max-width:520px){.p-grid{grid-template-columns:1fr;gap:10px}.prod{padding:14px 16px}.prod h3{font-size:17px}.prod-use{font-size:14px}}
 </style>'''
 PROD_JS = '''<script>
 (function(){
@@ -375,19 +388,38 @@ body = f'''<main>
     <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> › Unani medicines</nav>
     <div class="eyebrow">Unani medicines</div>
     <h1>Unani &amp; herbal medicines</h1>
-    <p class="lead">Buy genuine Unani and herbal medicines through A&amp;Z Healthcare Centre, Jogeshwari West. Find the medicine below and tap <b>Enquire to buy</b>. We'll confirm availability and price on WhatsApp.</p>
+    <p class="lead">Buy genuine Unani and herbal medicines through A&amp;Z Healthcare Centre, Jogeshwari West, Mumbai. Browse {len(PRODUCTS)} medicines with their traditional uses, from classical khamiras, majuns and jawarish to herbal syrups, oils and tablets, then tap <b>Enquire to buy</b>. We'll confirm availability and price on WhatsApp.</p>
     <div class="p-advice"><span aria-hidden="true">⚕️</span><div><b>Take Unani medicines on a physician's advice.</b> Many of these are classical Unani formulations. The right medicine and dose depend on your health and temperament (mizaj). Dr. Hafsa Patel can guide you at a consultation, in the clinic or online.</div></div>
   </div>
 </section>
 <section style="padding-top:18px">
   <div class="wrap">
+    <div class="p-list">
     <div class="p-tools">
-      <input id="pSearch" class="p-search" type="search" placeholder="Search {len(PRODUCTS)} products, e.g. Safi, Joshina" aria-label="Search products">
+      <input id="pSearch" class="p-search" type="search" placeholder="Search by name or use, e.g. Joshina, cough, hair fall" aria-label="Search products">
       <div class="chips" role="group" aria-label="Filter by category">{chips}</div>
     </div>
     <p class="p-count" id="pCount" aria-live="polite">Showing {len(PRODUCTS)} of {len(PRODUCTS)} products</p>
     <div class="p-grid">{"".join(prod_card(pr) for pr in PRODUCTS)}</div>
     <p class="p-empty" id="pEmpty">No products match your search. Try another name, or <a href="{WA}" target="_blank" rel="noopener">ask us on WhatsApp</a>.</p>
+    </div>
+    <div class="p-types">
+      <h2>A quick guide to Unani medicine types</h2>
+      <p>Unani medicines are named after the way they are prepared. Knowing the type tells you how a medicine is usually taken.</p>
+      <dl>
+        <div><dt>Khamira</dt><dd>A soft, sweet, fermented paste, often with gaozaban or pearl, traditionally used as a tonic for the heart and brain.</dd></div>
+        <div><dt>Majun</dt><dd>A semi-solid herbal paste made with honey or sugar syrup, one of the most common classical Unani forms.</dd></div>
+        <div><dt>Jawarish</dt><dd>A digestive paste, usually taken after meals to support the stomach, liver and appetite.</dd></div>
+        <div><dt>Itrifal</dt><dd>A classical paste based on myrobalans (halela, balela, amla), traditionally used for the head, brain and digestion.</dd></div>
+        <div><dt>Arq</dt><dd>A herbal distillate, such as arq gulab (rose) or arq ajwain, taken as a liquid.</dd></div>
+        <div><dt>Habb and Qurs</dt><dd>Pills (habb) and tablets (qurs), easy-to-take forms of Unani formulations.</dd></div>
+        <div><dt>Lauq</dt><dd>A thick linctus, licked slowly, traditionally used for the throat and chest.</dd></div>
+        <div><dt>Sharbat</dt><dd>A herbal syrup, often cooling, diluted in water or taken by spoon.</dd></div>
+        <div><dt>Roghan</dt><dd>A medicated oil for massage, the scalp or the skin.</dd></div>
+        <div><dt>Safoof and Kushta</dt><dd>Herbal powders (safoof) and specially prepared mineral formulations (kushta), used under a physician's guidance.</dd></div>
+      </dl>
+      <p>Not sure which medicine suits you? <a href="{WA}" target="_blank" rel="noopener">Book a consultation with Dr. Hafsa Patel</a>, in the clinic or online.</p>
+    </div>
     <p class="p-note">Product names are trademarks of their respective owners. Availability and prices are confirmed by the clinic on WhatsApp. This list is for information only and is not medical advice.</p>
   </div>
 </section>
@@ -396,11 +428,13 @@ graph = [
     {"@type": "CollectionPage", "name": "Unani medicines at " + NAME, "url": SITE + "/products",
      "inLanguage": "en-IN", "publisher": ORG,
      "mainEntity": {"@type": "ItemList", "numberOfItems": len(PRODUCTS),
-                    "itemListElement": [{"@type": "ListItem", "position": i + 1, "name": pr['name']} for i, pr in enumerate(PRODUCTS)]}},
+                    "itemListElement": [{"@type": "ListItem", "position": i + 1,
+                                         "item": {"@type": "Thing", "name": pr['name'], "description": USES[pr['name']]}}
+                                        for i, pr in enumerate(PRODUCTS)]}},
     crumbs_ld([("Home", "/"), ("Unani medicines", "/products")]),
 ]
-pp = page('Unani Medicines in Jogeshwari, Mumbai | ' + NAME,
-          f'Browse {len(PRODUCTS)} Unani and herbal medicines and check availability at A&Z Healthcare Centre, Jogeshwari West, Mumbai, on WhatsApp.',
+pp = page('Unani Medicines & Their Uses: Khamira, Majun, Jawarish | ' + NAME,
+          f'Uses of {len(PRODUCTS)} Unani and herbal medicines: khamira, majun, jawarish, syrups and oils. Enquire to buy at A&Z Healthcare Centre, Jogeshwari, Mumbai.',
           '/products', body, graph)
 pp = pp.replace('</head>', PROD_CSS + '\n</head>', 1).replace('</body>', PROD_JS + '\n</body>', 1)
 write('pages/products.html', pp)
