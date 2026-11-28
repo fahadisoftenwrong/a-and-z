@@ -303,7 +303,8 @@ cat_counts = {}
 for pr in PRODUCTS:
     for c in pr['categories']:
         cat_counts[c] = cat_counts.get(c, 0) + 1
-cats = sorted(cat_counts, key=lambda c: (-cat_counts[c], c))
+LAST = ['General', 'Over the counter']  # not body systems: shown at the end
+cats = sorted(cat_counts, key=lambda c: (c in LAST, LAST.index(c) if c in LAST else 0, -cat_counts[c], c))
 
 
 def slugify(t):
@@ -323,8 +324,9 @@ def prod_card(pr):
             f'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11.5a8.5 8.5 0 01-12.6 7.4L3 20l1.2-4.2A8.5 8.5 0 1120 11.5z"/></svg>Enquire to buy</a></article>')
 
 
-chips = '<button type="button" class="chip on" data-cat="all">All <span>' + str(len(PRODUCTS)) + '</span></button>' + ''.join(
-    f'<button type="button" class="chip" data-cat="{slugify(c)}">{e(c)} <span>{cat_counts[c]}</span></button>' for c in cats)
+chips = ''.join(
+    f'<button type="button" class="chip{" on" if i == 0 else ""}" data-cat="{slugify(c)}" data-label="{e(c)}" aria-pressed="{"true" if i == 0 else "false"}">'
+    f'{e(c)} <span>{cat_counts[c]}</span></button>' for i, c in enumerate(cats))
 PROD_CSS = '''<style>
 .p-tools{position:sticky;top:80px;z-index:5;background:rgba(250,246,236,.96);backdrop-filter:blur(8px);padding:14px 0 12px;border-bottom:1px solid var(--line);margin-bottom:22px}
 .p-search{width:100%;max-width:420px;margin:0 0 12px;padding:12px 16px;border-radius:999px;border:1.5px solid var(--line);background:#fff;font:inherit;font-size:16px}
@@ -335,7 +337,11 @@ PROD_CSS = '''<style>
 .chip span{color:var(--muted);font-size:12px;margin-left:2px}
 .chip.on{background:var(--green-900);border-color:var(--green-900);color:#fff}
 .chip.on span{color:#f3e3b5}
-.p-count{font-size:14px;color:var(--muted);margin-bottom:14px}
+.p-count{font-size:15px;color:var(--muted);margin-bottom:14px}
+.p-count b{color:var(--green-900);font-family:Fraunces,serif;font-size:19px;font-weight:600}
+.prod[hidden]{display:none!important}
+.chips.searching .chip.on{background:#fff;border-color:var(--line);color:var(--green-900)}
+.chips.searching .chip.on span{color:var(--muted)}
 .p-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
 .prod{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px 18px;display:flex;flex-direction:column;gap:8px;transition:transform .2s,box-shadow .2s;border-top:3px solid var(--gold)}
 .prod:hover{transform:translateY(-3px);box-shadow:0 12px 26px -14px rgba(23,58,43,.35)}
@@ -366,20 +372,29 @@ PROD_CSS = '''<style>
 PROD_JS = '''<script>
 (function(){
   var cards=[].slice.call(document.querySelectorAll('.prod')), chips=[].slice.call(document.querySelectorAll('.chip')),
-      q=document.getElementById('pSearch'), count=document.getElementById('pCount'), empty=document.getElementById('pEmpty'), cat='all';
+      bar=document.querySelector('.chips'), q=document.getElementById('pSearch'), count=document.getElementById('pCount'),
+      empty=document.getElementById('pEmpty'), current=chips[0];
+  function esc(t){return t.replace(/&/g,'&amp;').replace(/</g,'&lt;')}
   function apply(){
-    var t=(q.value||'').trim().toLowerCase(), n=0;
+    var t=(q.value||'').trim().toLowerCase(), n=0, cat=current.dataset.cat;
     cards.forEach(function(c){
-      var ok=(cat==='all'||(' '+c.dataset.cats+' ').indexOf(' '+cat+' ')>-1)&&(!t||c.dataset.name.indexOf(t)>-1);
+      // While searching, look through every system; otherwise show only the selected system
+      var ok=t ? c.dataset.name.indexOf(t)>-1 : (' '+c.dataset.cats+' ').indexOf(' '+cat+' ')>-1;
       c.hidden=!ok; if(ok)n++;
     });
-    count.textContent='Showing '+n+' of '+cards.length+' products';
+    bar.classList.toggle('searching',!!t);
+    count.innerHTML=t ? '<b>'+n+(n===1?' result':' results')+'</b> for “'+esc(q.value.trim())+'”'
+                      : '<b>'+esc(current.dataset.label)+'</b> · '+n+(n===1?' medicine':' medicines');
     empty.style.display=n?'none':'block';
   }
   chips.forEach(function(b){b.addEventListener('click',function(){
-    chips.forEach(function(x){x.classList.remove('on')}); b.classList.add('on'); cat=b.dataset.cat; apply();
+    chips.forEach(function(x){x.classList.remove('on');x.setAttribute('aria-pressed','false')});
+    b.classList.add('on'); b.setAttribute('aria-pressed','true'); current=b; q.value=''; apply();
+    b.scrollIntoView({block:'nearest',inline:'center',behavior:'smooth'});
   })});
   q.addEventListener('input',apply);
+  q.addEventListener('search',apply);
+  apply();
 })();
 </script>'''
 body = f'''<main>
@@ -397,7 +412,7 @@ body = f'''<main>
     <div class="p-list">
     <div class="p-tools">
       <input id="pSearch" class="p-search" type="search" placeholder="Search by name or use, e.g. Khamira, cough, hair fall" aria-label="Search products">
-      <div class="chips" role="group" aria-label="Filter by category">{chips}</div>
+      <div class="chips" role="group" aria-label="Choose a body system">{chips}</div>
     </div>
     <p class="p-count" id="pCount" aria-live="polite">Showing {len(PRODUCTS)} of {len(PRODUCTS)} products</p>
     <div class="p-grid">{"".join(prod_card(pr) for pr in PRODUCTS)}</div>
